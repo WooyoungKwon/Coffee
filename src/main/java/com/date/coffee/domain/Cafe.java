@@ -41,4 +41,6 @@ public class Cafe {
 
     @OneToMany(mappedBy = "cafe")
     private List<Photo> photos = new ArrayList<>();
+
+
 }

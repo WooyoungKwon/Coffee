@@ -21,6 +21,7 @@ public class Member {
     private String password;
     private String name;
     private String email;
+    private int phoneNumber;
 
     @Enumerated(EnumType.STRING) // 숫자가 아닌 문자 그대로 데이터가 저장됨
     private Role role;
@@ -36,4 +37,19 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Review> reviews = new ArrayList<>();
+
+    public int addCafe(Cafe cafe) {
+        cafes.add(cafe);
+        return cafes.size();
+    }
+
+    public int addPhoto(Photo photo) {
+        photos.add(photo);
+        return photos.size();
+    }
+
+    public int addReview(Review review) {
+        reviews.add(review);
+        return reviews.size();
+    }
 }
