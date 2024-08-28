@@ -1,5 +1,6 @@
 package com.date.coffee.service;
 
+import com.date.coffee.domain.Cafe;
 import com.date.coffee.domain.Member;
 import com.date.coffee.repository.MemberRepository;
 import com.date.coffee.service.dto.MemberDto;
@@ -20,6 +21,20 @@ public class MemberService {
     public Long save(Member member) {
         Member saveMember = memberRepository.save(member);
         return saveMember.getId();
+    }
+
+    @Transactional
+    public void addCafe(Long id, Cafe cafe) {
+        Member member = memberRepository.findById(id)
+                .orElseThrow(RuntimeException::new);
+        member.addCafe(cafe);
+    }
+
+    @Transactional
+    public void removeCafe(Long id, Cafe cafe) {
+        Member member = memberRepository.findById(id)
+                .orElseThrow(RuntimeException::new);
+        member.removeCafe(cafe);
     }
 
     @Transactional

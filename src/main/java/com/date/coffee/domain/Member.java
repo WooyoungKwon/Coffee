@@ -38,9 +38,12 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Review> reviews = new ArrayList<>();
 
-    public int addCafe(Cafe cafe) {
+    public void addCafe(Cafe cafe) {
         cafes.add(cafe);
-        return cafes.size();
+    }
+
+    public void removeCafe(Cafe cafe) {
+        cafes.remove(cafe);
     }
 
     public int addPhoto(Photo photo) {
