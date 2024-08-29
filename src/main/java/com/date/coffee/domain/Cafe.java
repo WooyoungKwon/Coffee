@@ -22,6 +22,7 @@ public class Cafe {
     @Embedded
     private Address address;
 
+    private String vibe;
     private String recommendedCoffee;
     private String coffeeBean;
     private int rating;
@@ -42,5 +43,11 @@ public class Cafe {
     @OneToMany(mappedBy = "cafe")
     private List<Photo> photos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "cafe")
+    private List<Bookmark> bookmarks = new ArrayList<>();
 
+    public void addPhoto(Photo photo) {
+        photos.add(photo);
+        photo.setCafe(this);
+    }
 }

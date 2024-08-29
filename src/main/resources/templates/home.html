@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<!--fragments/header가 밑 head 태그 안의 내용을 replace-->
+<body>
+<div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+<div class="container">
+    <div class="justify-content-center" style="background-color: #F6EBDA">
+        <div class="col-12 text-center">
+            <h1 class="display-3">웹에 대한 설명</h1>
+            <p>여기에 웹사이트의 핵심 설명 내용이 들어갑니다. 사용자에게 주요 정보를 전달하는 영역입니다.</p>
+        </div>
+    </div>
+</div>
+<div class="b-example-divider"></div>
+<div class="container px-4 py-5" id="custom-cards">
+    <a style="float: right; margin-right: 5%" >더보기</a>
+    <h2 class="pb-2 border-bottom">카페 목록</h2>
+    <!--  카페 목록 뿌리기 -->
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g4 py-5">
+        <div class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" th:each="cafe : ${cafes}">
+            <div class="col">
+                    <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg">
+                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                                <div>
+                                    Photo: <span th:text="${cafe.photos}"></span>
+                                </div>
+                                <div>
+                                    Name: <span th:text="${cafe.name}"></span>
+                                </div>
+                                <div>
+                                    Vibe: <span th:text="${cafe.vibe}"></span>
+                                </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <a href="/cafes/new">카페추가 TEST</a>
+    </div>
+</div>
+
+
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+<head th:replace="~{fragments/header :: header}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Coffeeration</title>
+</head>
+</html>

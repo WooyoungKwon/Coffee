@@ -29,7 +29,7 @@ public class Member {
     @CreationTimestamp // 생성 시간
     private LocalDateTime localDateTime;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cafe> cafes = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
@@ -38,17 +38,29 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Review> reviews = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member")
+    private List<Bookmark> bookmarks = new ArrayList<>();
+
     public void addCafe(Cafe cafe) {
         cafes.add(cafe);
+        cafe.setMember(this);
     }
 
+    // orphanRemoval 속성 설정으로 자식 객체는 DB에서 완전히 삭제
     public void removeCafe(Cafe cafe) {
         cafes.remove(cafe);
+        // cascade 설정
+        // cafe.setMember(null);
     }
 
-    public int addPhoto(Photo photo) {
+    public void addPhoto(Photo photo) {
         photos.add(photo);
-        return photos.size();
+        photo.setMember(this);
+    }
+
+    public void removePhoto(Photo photo) {
+        photos.remove(photo);
+        photo.setMember(null);
     }
 
     public int addReview(Review review) {

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+  <head th:replace="~{fragments/header :: header}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Create Cafe</title>
+  </head>
+  <body>
+    <div class="container">
+      <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+      <form th:action="@{/cafes/new}" th:object="${cafe}" method="POST">
+        <div class="form-group mb-3">
+          <label th:for="name">이름
+          <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력하세요">
+          </label>
+        </div>
+        <div class="form-group mb-3">
+          <div class="form-group mb-3">
+            <label th:for="zipcode">우편번호
+              <input type="text" th:field="*{zipcode}" class="form-control" placeholder="우편번호">
+            </label>
+            <div class="form-group mb-3">
+              <label th:for="street">거리
+                <input type="text" th:field="*{street}" class="form-control" placeholder="거리">
+              </label>
+            </div>
+          </div>
+          <label th:for="city">도시
+            <input type="text" th:field="*{city}" class="form-control" placeholder="도시">
+          </label>
+        </div>
+        <div class="form-group mb-3">
+          <label th:for="vibe">분위기
+          <input type="text" th:field="*{vibe}" class="form-control" placeholder="어떤 분위기인가요?">
+          </label>
+        </div>
+        <div class="form-group mb-3">
+          <label th:for="recommendedMenu">추천 메뉴
+          <input type="text" th:field="*{recommendedCoffee}" class="form-control" placeholder="메뉴를 추천해주세요!">
+          </label>
+        </div>
+        <div class="form-group mb-3">
+          <label th:for="coffeeBean">원두
+          <input type="text" th:field="*{coffeeBean}" class="form-control" placeholder="어떤 원두를 사용하나요?">
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">저장하기</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -3,13 +3,12 @@ package com.date.coffee.service;
 import com.date.coffee.domain.Cafe;
 import com.date.coffee.domain.Member;
 import com.date.coffee.repository.MemberRepository;
-import com.date.coffee.service.dto.MemberDto;
+import com.date.coffee.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,14 +23,14 @@ public class MemberService {
     }
 
     @Transactional
-    public void addCafe(Long id, Cafe cafe) {
+    public void addCafeToMember(Long id, Cafe cafe) {
         Member member = memberRepository.findById(id)
                 .orElseThrow(RuntimeException::new);
         member.addCafe(cafe);
     }
 
     @Transactional
-    public void removeCafe(Long id, Cafe cafe) {
+    public void removeCafeToMember(Long id, Cafe cafe) {
         Member member = memberRepository.findById(id)
                 .orElseThrow(RuntimeException::new);
         member.removeCafe(cafe);

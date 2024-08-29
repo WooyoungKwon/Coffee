@@ -24,10 +24,10 @@ class CafeServiceTest {
         cafe.setRecommendedCoffee("latte");
 
         //when
-        cafeService.save(cafe);
+        Long id = cafeService.save(cafe);
 
         //then
-        assertEquals("latte", cafeService.findByName("123").get(0).getRecommendedCoffee());
+        assertEquals("latte", cafeService.findById(id).getRecommendedCoffee());
     }
 
     @Test

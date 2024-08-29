@@ -1,8 +1,8 @@
 package com.date.coffee.service;
 
+import com.date.coffee.domain.Cafe;
 import com.date.coffee.domain.Member;
-import com.date.coffee.repository.MemberRepository;
-import com.date.coffee.service.dto.MemberDto;
+import com.date.coffee.dto.MemberDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +17,7 @@ class MemberServiceTest {
     @Autowired private MemberService memberService;
 
     @Test
-    public void save() throws Exception{
+    public void 저장() throws Exception{
         //given
         Member member = new Member();
 
@@ -26,15 +26,13 @@ class MemberServiceTest {
 
         //when
         Long id = memberService.save(member);
-        Member member2 = memberService.findById(id);
-        //then
 
-        assertEquals(member.getUserId(), member2.getUserId());
+        //then
+        assertEquals("test", memberService.findById(id).getUserId());
     }
 
-
     @Test
-    public void update() throws Exception{
+    public void 수정() throws Exception{
         //given
         Member member = new Member();
         member.setUserId("test");
@@ -49,6 +47,50 @@ class MemberServiceTest {
         memberService.update(member.getId(), memberDto);
 
         //then
-        assertEquals(member.getUserId(), "123");
+        assertEquals("123", member.getUserId());
+    }
+
+    @Test
+    public void 카페추가() throws Exception{
+        //given
+        Member member = new Member();
+        member.setName("test");
+        Long id = memberService.save(member);
+
+        Cafe cafe1 = new Cafe();
+        cafe1.setName("test1");
+        Cafe cafe2 = new Cafe();
+        cafe2.setName("test2");
+
+        //when
+        memberService.addCafeToMember(id, cafe1);
+        memberService.addCafeToMember(id, cafe2);
+
+        //then
+        assertEquals(cafe1, memberService.findById(id).getCafes().get(0));
+        assertEquals(member, cafe1.getMember());
+        assertEquals(2, memberService.findById(id).getCafes().size());
+    }
+
+    @Test
+    public void 카페삭제() throws Exception{
+        //given
+        Member member = new Member();
+        member.setName("test");
+        Long id = memberService.save(member);
+
+        Cafe cafe1 = new Cafe();
+        cafe1.setName("test");
+        Cafe cafe2 = new Cafe();
+        cafe2.setName("test2");
+
+        memberService.addCafeToMember(id, cafe1);
+        memberService.addCafeToMember(id, cafe2);
+
+        //when
+        memberService.removeCafeToMember(id, cafe2);
+
+        //then
+        assertEquals(1, memberService.findById(member.getId()).getCafes().size());
     }
 }

@@ -1,8 +1,10 @@
 package com.date.coffee.service;
 
+import com.date.coffee.domain.Address;
 import com.date.coffee.domain.Cafe;
+import com.date.coffee.domain.Photo;
 import com.date.coffee.repository.CafeRepository;
-import com.date.coffee.service.dto.CafeDto;
+import com.date.coffee.dto.CafeDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,10 +34,17 @@ public class CafeService {
         Cafe findCafe = cafeRepository.findById(id)
                 .orElseThrow(RuntimeException::new);
         findCafe.setName(cafeDto.getName());
-        findCafe.setAddress(cafeDto.getAddress());
+        Address address = new Address(cafeDto.getCity(), cafeDto.getStreet(), cafeDto.getZipcode());
+        findCafe.setAddress(address);
+        findCafe.setVibe(cafeDto.getVibe());
         findCafe.setRecommendedCoffee(cafeDto.getRecommendedCoffee());
         findCafe.setCoffeeBean(findCafe.getCoffeeBean());
-        findCafe.setRating(cafeDto.getRating());
+    }
+
+    @Transactional
+    public void addPhotoToCafe(Long cafeId, Photo photo) {
+        Cafe cafe = cafeRepository.findById(cafeId).orElseThrow(RuntimeException::new);
+        cafe.addPhoto(photo);
     }
 
     public Cafe findById(Long id) {

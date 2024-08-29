@@ -1,4 +1,4 @@
-package com.date.coffee.service.dto;
+package com.date.coffee.dto;
 
 import lombok.Getter;
 import lombok.Setter;
