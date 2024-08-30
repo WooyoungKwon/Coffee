@@ -39,6 +39,7 @@ public class CafeService {
         findCafe.setVibe(cafeDto.getVibe());
         findCafe.setRecommendedCoffee(cafeDto.getRecommendedCoffee());
         findCafe.setCoffeeBean(findCafe.getCoffeeBean());
+        findCafe.setCreatedAt(findCafe.getCreatedAt());
     }
 
     @Transactional

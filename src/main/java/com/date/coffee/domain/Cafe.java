@@ -28,7 +28,7 @@ public class Cafe {
     private int rating;
 
     @CreationTimestamp
-    private LocalDateTime localDateTime;
+    private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

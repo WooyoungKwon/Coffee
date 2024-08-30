@@ -33,6 +33,7 @@ public class CafeController {
         cafe.setVibe(cafeDto.getVibe());
         cafe.setRecommendedCoffee(cafeDto.getRecommendedCoffee());
         cafe.setCoffeeBean(cafeDto.getCoffeeBean());
+        cafe.setCreatedAt(cafeDto.getCreatedAt());
 
         cafeService.save(cafe);
         return "redirect:/";

@@ -5,8 +5,8 @@
     <title>Create Cafe</title>
   </head>
   <body>
-    <div class="container">
-      <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+  <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+  <div class="container">
       <form th:action="@{/cafes/new}" th:object="${cafe}" method="POST">
         <div class="form-group mb-3">
           <label th:for="name">이름

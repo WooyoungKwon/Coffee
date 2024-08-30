@@ -4,6 +4,8 @@ import com.date.coffee.domain.Address;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter @Setter
 public class CafeDto {
     private Long id;
@@ -18,4 +20,5 @@ public class CafeDto {
     private String vibe;
     private String recommendedCoffee;
     private String coffeeBean;
+    private LocalDateTime createdAt;
 }

@@ -24,7 +24,7 @@ public class HomeController {
 
         // 가장 최근에 저장된 객체 3개만 가져오기
         List<Cafe> recentCafes = cafes.stream()
-                .sorted(Comparator.comparing(Cafe::getLocalDateTime).reversed())
+                .sorted(Comparator.comparing(Cafe::getCreatedAt).reversed())
                 .limit(3)
                 .toList();
 
