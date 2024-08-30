@@ -10,19 +10,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class CafeController {
 
     private final CafeService cafeService;
 
-    @GetMapping("/cafes/new")
+    @GetMapping("/cafe/new")
     public String createCafe(Model model) {
         model.addAttribute("cafe", new CafeDto());
         return "cafe/createCafe";
     }
 
-    @PostMapping("/cafes/new")
+    @PostMapping("/cafe/new")
     public String createCafe(CafeDto cafeDto) {
         Cafe cafe = new Cafe();
         cafe.setName(cafeDto.getName());
@@ -37,5 +39,11 @@ public class CafeController {
 
         cafeService.save(cafe);
         return "redirect:/";
+    }
+
+    @GetMapping("/cafe")
+    public String listCafes(Model model) {
+        model.addAttribute("cafes", cafeService.findAll());
+        return "cafe/cafeList";
     }
 }

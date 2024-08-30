@@ -5,6 +5,7 @@
 <body>
 <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
 <main>
+<!--    Carousel -->
     <div id="myCarousel" class="carousel slide h-100" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -53,19 +54,16 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
-    </div>
-
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
+    </div> <!-- Carousel end -->
 
     <div class="container marketing">
-
-        <!-- Three columns of text below the carousel -->
-        <!--  카페 목록 뿌리기 -->
-        <div class="album py-5 bg-light">
+        <!--  카페 목록 -->
+        <div class="album py-5 bg-light mt-5">
             <div class="container">
+                <div class="container px-4 py-5" id="custom-cards">
+                    <a style="float: right; margin-right: 5%" href="/cafe">더보기</a>
+                    <h2 class="pb-2 border-bottom">카페 목록</h2>
+                </div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <div class="col" th:each="cafe : ${cafes}">
                         <div class="card shadow-sm">
@@ -92,12 +90,10 @@
                     </div>
                 </div>
             </div>
-            <a href="/cafes/new">카페추가 TEST</a>
+            <a href="/cafe/new">카페추가 TEST</a>
         </div>
 
-
         <!-- START THE FEATURETTES -->
-
         <hr class="featurette-divider">
 
         <div class="row featurette">
@@ -144,12 +140,7 @@
 
     </div><!-- /.container -->
 </main>
-<div class="b-example-divider"></div>
-<div class="container px-4 py-5" id="custom-cards">
-    <a style="float: right; margin-right: 5%" >더보기</a>
-    <h2 class="pb-2 border-bottom">카페 목록</h2>
 
-</div>
 
 
 

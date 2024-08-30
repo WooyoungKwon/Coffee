@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div class="header" th:fragment="bodyHeader">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #F9D9AA">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #F9D9AA; height: 7%">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Carousel</a>
+            <a class="navbar-brand" href="/">Carousel</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <ul class="navbar-nav ms-5 me-auto mx-auto mb-2 mb-md-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">지역별</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown01">
@@ -18,7 +18,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">분위기별</a>
+                        <a class="nav-link active dropdown-toggle" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">분위기별</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown01">
                             <li><a class="dropdown-item" href="#">따뜻함</a></li>
                             <li><a class="dropdown-item" href="#">차가움</a></li>
@@ -26,18 +26,21 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex mx-auto w-50">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+                <div class="mx-auto">
+                    <a href="/member/new">로그인</a>
+                </div>
             </div>
         </div>
     </nav>
     <!-- 검색창 -->
-    <div class="container-fluid py-2" style="background-color: #F9D9AA">
-        <form class="d-flex mx-auto w-50">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
+<!--    <div class="container-fluid py-2" style="background-color: #F9D9AA">-->
+<!--        <form class="d-flex mx-auto w-50">-->
+<!--            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--            <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--        </form>-->
+<!--    </div>-->
 </div>
