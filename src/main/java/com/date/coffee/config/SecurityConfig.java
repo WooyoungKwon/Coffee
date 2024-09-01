@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login") // 사용자 정의 로그인 페이지 URL, 인증되지 않은 사용자가 접근하려 할 때 redirection
                         .loginProcessingUrl("/member/signIn")
-//                        .failureHandler(customFailureHandler)
+                        .failureHandler(customFailureHandler)
                         .defaultSuccessUrl("/", true)
                         .permitAll()
                 );

@@ -36,11 +36,4 @@ public class MemberController {
 
         return "redirect:/login";
     }
-
-    @PostMapping("/member/signIn")
-    public String signInMember (MemberDto memberDto) {
-//        if (memberService.signIn(memberDto.getUsername(), memberDto.getPassword()))
-            return "redirect:/";
-//        return "redirect:/member/login";
-    }
 }

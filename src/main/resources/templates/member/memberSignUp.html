@@ -32,7 +32,6 @@
       </form>
     </div>
     <div class="sign-in-container">
-      <!--      <form action="/member/signIn" th:object="${memberDto}" method="post">-->
         <form action="/member/signIn" method="post">
         <h1>Sign In</h1>
         <div class="social-links">
@@ -47,8 +46,6 @@
           </div>
         </div>
         <span>or use your account</span>
-<!--        <input type="text" id="signInId" th:field="*{username}" placeholder="Id" required>-->
-<!--        <input type="password" id="signInPassword" th:field="*{password}" placeholder="Password" required>-->
         <input type="text" name="username" placeholder="username" required>
         <input type="text" name="password" placeholder="password" required>
         <button type="submit" class="form_btn">Sign In</button>

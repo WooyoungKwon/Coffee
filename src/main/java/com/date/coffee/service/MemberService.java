@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,15 +38,11 @@ public class MemberService {
     }
 
     public boolean signIn(String username, String password) {
-//        Optional<Member> optionalMember = memberRepository.findByUsername(username);
-        Member member = memberRepository.findByUsername(username);
-        if (member != null) {
+        Optional<Member> optionalMember = memberRepository.findByUsername(username);
+        if(optionalMember.isPresent()) {
+            Member member = optionalMember.get();
             return bCryptPasswordEncoder.matches(password, member.getPassword());
         }
-//        if(optionalMember.isPresent()) {
-//            Member member = optionalMember.get();
-//            return bCryptPasswordEncoder.matches(password, member.getPassword());
-//        }
         return false;
     }
 
