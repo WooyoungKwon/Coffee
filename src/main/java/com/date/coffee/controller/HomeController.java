@@ -2,7 +2,9 @@ package com.date.coffee.controller;
 
 import com.date.coffee.domain.Cafe;
 import com.date.coffee.service.CafeService;
+import com.date.coffee.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 public class HomeController {
 
     private final CafeService cafeService;
+    private final MemberService memberService;
 
     @RequestMapping("/")
     public String home(Model model) {

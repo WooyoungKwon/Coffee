@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입</title>
   <link href="/css/signup.css" rel="stylesheet">
-<!--  <script src="/js/signup.js"></script>-->
 </head>
 <body>
 <div class="wrapper">
   <div class="container">
     <div class="sign-up-container">
-      <form action="/member/new" th:object="${memberDto}" method="post">
+      <form action="/member/signUp" th:object="${memberDto}" method="post">
         <h1>Create Account</h1>
         <div class="social-links">
           <div>
@@ -25,23 +24,20 @@
           </div>
         </div>
         <span>or use your email for registration</span>
-        <label th:for="userId">아이디
-        <input type="text" th:field="*{userId}" placeholder="Id">
-        </label>
-        <label th:for="password">비밀번호
-          <input type="password" th:field="*{password}" placeholder="Password">
-        </label>
-        <label th:for="name">이름
-          <input type="text" th:field="*{name}" placeholder="Name">
-        </label>
-        <label th:for="email">이메일
-          <input type="email" th:field="*{email}" placeholder="Email">
-        </label>
+        <input type="text" th:field="*{username}" placeholder="Id" required>
+        <input type="password" th:field="*{password}" placeholder="Password" required>
+        <input type="text" th:field="*{name}" placeholder="Name" required>
+        <input type="email" th:field="*{email}" placeholder="Email" required>
         <button type="submit" class="form_btn">Sign Up</button>
       </form>
     </div>
     <div class="sign-in-container">
-      <form>
+      <p th:text="${role}">
+      <p th:text="${id}">
+      <p th:text="${error}">
+      <p th:text="${exception}">
+      <!--      <form action="/member/signIn" th:object="${memberDto}" method="post">-->
+        <form action="/member/signIn" method="post">
         <h1>Sign In</h1>
         <div class="social-links">
           <div>
@@ -55,11 +51,11 @@
           </div>
         </div>
         <span>or use your account</span>
-        <input placeholder="Id">
-        <input type="password" placeholder="Password">
-        <input placeholder="Name">
-        <input type="email" placeholder="Email">
-        <button class="form_btn">Sign In</button>
+<!--        <input type="text" id="signInId" th:field="*{username}" placeholder="Id" required>-->
+<!--        <input type="password" id="signInPassword" th:field="*{password}" placeholder="Password" required>-->
+        <input type="text" name="username" placeholder="username" required>
+        <input type="text" name="password" placeholder="password" required>
+        <button type="submit" class="form_btn">Sign In</button>
       </form>
     </div>
     <div class="overlay-container">

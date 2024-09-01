@@ -17,14 +17,17 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    private String userId;
+    @Column(unique = true, nullable = false)
+    private String username;
     private String password;
     private String name;
     private String email;
     private int phoneNumber;
 
-    @Enumerated(EnumType.STRING) // 숫자가 아닌 문자 그대로 데이터가 저장됨
-    private Role role;
+//    @Enumerated(EnumType.STRING) // 숫자가 아닌 문자 그대로 데이터가 저장됨
+//    private Role role = Role.USER;
+
+    private String role = "ROLE_ADMIN";
 
     @CreationTimestamp // 생성 시간
     private LocalDateTime localDateTime;

@@ -21,33 +21,33 @@ class MemberServiceTest {
         //given
         Member member = new Member();
 
-        member.setUserId("test");
+        member.setUsername("test");
         member.setPassword("test");
 
         //when
-        Long id = memberService.save(member);
+        Long id = memberService.signUp(member);
 
         //then
-        assertEquals("test", memberService.findById(id).getUserId());
+        assertEquals("test", memberService.findById(id).getUsername());
     }
 
     @Test
     public void 수정() throws Exception{
         //given
         Member member = new Member();
-        member.setUserId("test");
+        member.setUsername("test");
         member.setPassword("test");
 
-        memberService.save(member);
+        memberService.signUp(member);
 
         //when
         MemberDto memberDto = new MemberDto();
-        memberDto.setUserId("123");
+        memberDto.setUsername("123");
         memberDto.setPassword("123");
         memberService.update(member.getId(), memberDto);
 
         //then
-        assertEquals("123", member.getUserId());
+        assertEquals("123", member.getUsername());
     }
 
     @Test
@@ -55,7 +55,7 @@ class MemberServiceTest {
         //given
         Member member = new Member();
         member.setName("test");
-        Long id = memberService.save(member);
+        Long id = memberService.signUp(member);
 
         Cafe cafe1 = new Cafe();
         cafe1.setName("test1");
@@ -77,7 +77,7 @@ class MemberServiceTest {
         //given
         Member member = new Member();
         member.setName("test");
-        Long id = memberService.save(member);
+        Long id = memberService.signUp(member);
 
         Cafe cafe1 = new Cafe();
         cafe1.setName("test");
