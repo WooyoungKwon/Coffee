@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -85,23 +86,19 @@ public class MemberService {
         return memberRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 
-    public List<Member> findByUsername(String name) {
-        return memberRepository.findByName(name);
+    public Member findByUsername(String name) {
+        Member member = memberRepository.findByUsername(name)
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+        return member;
     }
 
     /**
      * 현재 로그인한 사용자
      * @Role
      */
-    public String getSessionUserRole() {
-        // 세션에서 현재 로그인한 사용자의 권한 목록 return
+    public Authentication getSessionUser() {
+        // 세션에서 현재 로그인한 사용자의 정보 return
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        Iterator<? extends GrantedAuthority> iter = authorities.iterator();
-        GrantedAuthority auth = iter.next();
-        String role = auth.getAuthority();
-
-        return role;
+        return authentication;
     }
 }

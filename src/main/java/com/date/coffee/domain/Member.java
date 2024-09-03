@@ -24,10 +24,9 @@ public class Member {
     private String email;
     private int phoneNumber;
 
-//    @Enumerated(EnumType.STRING) // 숫자가 아닌 문자 그대로 데이터가 저장됨
-//    private Role role = Role.USER;
+    @Enumerated(EnumType.STRING) // 숫자가 아닌 문자 그대로 데이터가 저장됨
+    private Role role = Role.ROLE_ADMIN;
 
-    private String role = "ROLE_ADMIN";
 
     @CreationTimestamp // 생성 시간
     private LocalDateTime localDateTime;
@@ -54,16 +53,6 @@ public class Member {
         cafes.remove(cafe);
         // cascade 설정
         // cafe.setMember(null);
-    }
-
-    public void addPhoto(Photo photo) {
-        photos.add(photo);
-        photo.setMember(this);
-    }
-
-    public void removePhoto(Photo photo) {
-        photos.remove(photo);
-        photo.setMember(null);
     }
 
     public int addReview(Review review) {

@@ -1,0 +1,1 @@
+INSERT INTO MEMBER (username, password, role) VALUES ('1', '1', 'ROLE_ADMIN');

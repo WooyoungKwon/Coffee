@@ -1,6 +1,7 @@
 package com.date.coffee.dto;
 
 import com.date.coffee.domain.Member;
+import com.date.coffee.domain.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -25,7 +26,8 @@ public class CustomUserDetails implements UserDetails {
 
             @Override
             public String getAuthority() {
-                return member.getRole();
+
+                return member.getRole().toString();
             }
         });
 

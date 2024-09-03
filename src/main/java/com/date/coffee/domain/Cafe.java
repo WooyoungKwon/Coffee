@@ -46,8 +46,4 @@ public class Cafe {
     @OneToMany(mappedBy = "cafe")
     private List<Bookmark> bookmarks = new ArrayList<>();
 
-    public void addPhoto(Photo photo) {
-        photos.add(photo);
-        photo.setCafe(this);
-    }
 }

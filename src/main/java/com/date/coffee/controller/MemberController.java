@@ -9,19 +9,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
+    private static final String upload_dir = "/static/cafe_image/";
 
     @GetMapping("/login")
     public String signUpForm(Model model, @RequestParam(value = "error", required = false)String error,
                              @RequestParam(value = "exception", required = false)String exception) {
         model.addAttribute("memberDto", new MemberDto());
 
-        return "member/memberSignUp";
+        return "/member/login";
     }
 
     @PostMapping("/member/signUp")

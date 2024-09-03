@@ -42,12 +42,6 @@ public class CafeService {
         findCafe.setCreatedAt(findCafe.getCreatedAt());
     }
 
-    @Transactional
-    public void addPhotoToCafe(Long cafeId, Photo photo) {
-        Cafe cafe = cafeRepository.findById(cafeId).orElseThrow(RuntimeException::new);
-        cafe.addPhoto(photo);
-    }
-
     public Cafe findById(Long id) {
         return cafeRepository.findById(id).orElse(null);
     }

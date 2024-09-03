@@ -1,18 +1,17 @@
 package com.date.coffee.controller;
 
 import com.date.coffee.domain.Cafe;
+import com.date.coffee.domain.Member;
+import com.date.coffee.domain.Role;
 import com.date.coffee.service.CafeService;
 import com.date.coffee.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,6 +29,12 @@ public class HomeController {
                 .sorted(Comparator.comparing(Cafe::getCreatedAt).reversed())
                 .limit(3)
                 .toList();
+
+        Member member = new Member();
+        member.setUsername("1");
+        member.setPassword("1");
+        member.setRole(Role.ROLE_ADMIN);
+        memberService.signUp(member);
 
         model.addAttribute("cafes", recentCafes);
         return "home";
