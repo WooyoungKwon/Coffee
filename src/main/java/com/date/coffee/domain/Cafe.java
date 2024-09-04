@@ -34,16 +34,16 @@ public class Cafe {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "cafe")
+    @OneToMany(mappedBy = "cafe", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "cafe")
+    @OneToMany(mappedBy = "cafe", cascade = CascadeType.ALL)
     private List<Menu> menus = new ArrayList<>();
 
-    @OneToMany(mappedBy = "cafe")
+    @OneToMany(mappedBy = "cafe", cascade = CascadeType.ALL)
     private List<Photo> photos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "cafe")
+    @OneToMany(mappedBy = "cafe", cascade = CascadeType.ALL)
     private List<Bookmark> bookmarks = new ArrayList<>();
 
 }

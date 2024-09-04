@@ -31,7 +31,7 @@ public class Member {
     @CreationTimestamp // 생성 시간
     private LocalDateTime localDateTime;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "member", orphanRemoval = true)
     private List<Cafe> cafes = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
