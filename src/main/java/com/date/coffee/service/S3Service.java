@@ -16,16 +16,10 @@ import java.nio.file.Paths;
 public class S3Service {
     private final S3Client s3Client;
 
-//    private final AmazonS3Client s3Client;
-
-    @Value("${s3.bucket}")
-    private String bucket;
-
     public String upload(MultipartFile file) throws IOException {
         String key = System.currentTimeMillis() + "_" +file.getOriginalFilename();
-        System.out.println("키키키키: " + key);
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-                .bucket(bucket)
+                .bucket("wycoffeebucket")
                 .key(key)
                 .build();
         s3Client.putObject(putObjectRequest, RequestBody.fromInputStream(file.getInputStream(), file.getSize()));
