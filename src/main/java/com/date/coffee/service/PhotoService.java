@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class PhotoService {
     private final PhotoRepository photoRepository;
 
-    public void save(Cafe cafe, Member member, byte[] photoUrl) {
+    public void save(Cafe cafe, Member member, String photoUrl) {
         Photo photo = new Photo();
         photo.setCafe(cafe);
         photo.setMember(member);

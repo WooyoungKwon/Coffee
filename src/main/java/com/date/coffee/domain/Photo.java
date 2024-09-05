@@ -22,10 +22,10 @@ public class Photo {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
-
-    @Lob // 대용량 데이터 타입으로 지정 (이미지, 비디오 등등)
-    @Column(columnDefinition = "BLOB")
-    private byte[] photoUrl;
+//
+//    @Lob // 대용량 데이터 타입으로 지정 (이미지, 비디오 등등)
+//    @Column(columnDefinition = "BLOB")
+    private String photoUrl;
 
     @CreationTimestamp
     private LocalDateTime localDateTime;

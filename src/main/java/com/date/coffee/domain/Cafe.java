@@ -1,5 +1,6 @@
 package com.date.coffee.domain;
 
+import com.date.coffee.dto.CafeDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,4 +47,15 @@ public class Cafe {
     @OneToMany(mappedBy = "cafe", cascade = CascadeType.ALL)
     private List<Bookmark> bookmarks = new ArrayList<>();
 
+    // JPA 규칙으로 기본 생성자 만들어야 함.
+    // 대신 사용하지 못하도록 protected 선언, private은 안되지만 protected는 허용해줌.
+    protected Cafe() {}
+
+    public Cafe(CafeDto cafeDto) {
+        this.name = cafeDto.getName();
+        this.address = new Address(cafeDto.getCity(), cafeDto.getStreet(), cafeDto.getZipcode());
+        this.vibe = cafeDto.getVibe();
+        this.recommendedCoffee = cafeDto.getRecommendedCoffee();
+        this.coffeeBean = cafeDto.getCoffeeBean();
+    }
 }
