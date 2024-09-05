@@ -6,7 +6,7 @@ import com.date.coffee.dto.CafeDto;
 import com.date.coffee.service.CafeService;
 import com.date.coffee.service.MemberService;
 import com.date.coffee.service.PhotoService;
-import com.date.coffee.service.S3UploadService;
+import com.date.coffee.service.S3Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +23,7 @@ import java.util.List;
 public class CafeController {
 
     private final CafeService cafeService;
-    private final S3UploadService s3UploadService;
+    private final S3Service s3Service;
     private final MemberService memberService;
     private final PhotoService photoService;
 
@@ -34,7 +34,7 @@ public class CafeController {
     }
 
     @PostMapping("/cafe/new")
-    public String createCafe(@RequestParam("cafeImages")List<MultipartFile> files, CafeDto cafeDto) {
+    public String createCafe(@RequestParam("cafeImages")List<MultipartFile> files, CafeDto cafeDto) throws IOException {
         Cafe cafe = new Cafe(cafeDto);
         cafeService.save(cafe);
 
@@ -45,12 +45,11 @@ public class CafeController {
             if(file.isEmpty()) {
                 return "redirect:/";
             }
-            try {
-            String imageUrl = s3UploadService.upload(file);
-            photoService.save(cafe, member, imageUrl);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            String s3Key = s3Service.upload(file);
+            String fileUrl = "https://" + "wycoffeebucket" + ".s3.amazonaws.com/" + s3Key;
+            photoService.save(cafe, member, s3Key, fileUrl);
+
+            System.out.println(fileUrl + " 이미지 저장");
         }
         return "redirect:/";
     }

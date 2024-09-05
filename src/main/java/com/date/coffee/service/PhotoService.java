@@ -12,10 +12,11 @@ import org.springframework.stereotype.Service;
 public class PhotoService {
     private final PhotoRepository photoRepository;
 
-    public void save(Cafe cafe, Member member, String photoUrl) {
+    public void save(Cafe cafe, Member member, String photoUrl, String s3Key) {
         Photo photo = new Photo();
         photo.setCafe(cafe);
         photo.setMember(member);
+        photo.setS3Key(s3Key);
         photo.setPhotoUrl(photoUrl);
 
         photoRepository.save(photo);

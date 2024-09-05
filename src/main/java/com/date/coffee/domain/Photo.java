@@ -25,6 +25,7 @@ public class Photo {
 //
 //    @Lob // 대용량 데이터 타입으로 지정 (이미지, 비디오 등등)
 //    @Column(columnDefinition = "BLOB")
+    private String s3Key;
     private String photoUrl;
 
     @CreationTimestamp
