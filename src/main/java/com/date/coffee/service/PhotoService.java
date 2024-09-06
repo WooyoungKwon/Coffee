@@ -6,19 +6,28 @@ import com.date.coffee.domain.Photo;
 import com.date.coffee.repository.PhotoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PhotoService {
     private final PhotoRepository photoRepository;
 
-    public void save(Cafe cafe, Member member, String photoUrl, String s3Key) {
+    @Transactional
+    public void save(Cafe cafe, Member member, String s3Key) {
         Photo photo = new Photo();
         photo.setCafe(cafe);
         photo.setMember(member);
         photo.setS3Key(s3Key);
-        photo.setPhotoUrl(photoUrl);
 
         photoRepository.save(photo);
+    }
+
+    public String findS3KeyByCafeId(Long id) {
+        Optional<Photo> photo = photoRepository.findByCafeId(id);
+        return photo.map(Photo::getS3Key).orElse(null);
     }
 }

@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,6 +29,7 @@ public class CafeController {
     private final S3Service s3Service;
     private final MemberService memberService;
     private final PhotoService photoService;
+    Set<String> imageExtensionSet = Set.of("jpg", "jpeg", "png");
 
     @GetMapping("/cafe/new")
     public String createCafe(Model model) {
@@ -42,21 +46,28 @@ public class CafeController {
         String username = memberService.getSessionUser().getName();
         Member member = memberService.findByUsername(username);
         for (MultipartFile file : files) {
+            // 파일이 입력되지 않았으면 return
             if(file.isEmpty()) {
                 return "redirect:/";
             }
-            String s3Key = s3Service.upload(file);
-            String fileUrl = "https://" + "wycoffeebucket" + ".s3.amazonaws.com/" + s3Key;
-            photoService.save(cafe, member, s3Key, fileUrl);
+            // 확장자가 "jpg", "jpeg", "png" 중 하나가 아니라면 저장하지 않고 return
+            String originalFilename = file.getOriginalFilename();
+            String extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+            if (!imageExtensionSet.contains(extension))
+                return "redirect:/";
+            // "카페이름 + 저장한 사람 이름 + 랜덤 id 값 + 파일 이름" 형식으로 S3에 저장
+            String key = cafe.getName() + "/"  + member.getName() + "/" + UUID.randomUUID() + "_" + file.getOriginalFilename();
+            s3Service.upload(file, key);
 
-            System.out.println(fileUrl + " 이미지 저장");
+            photoService.save(cafe, member, key);
         }
         return "redirect:/";
     }
 
-    @GetMapping("/cafe")
-    public String listCafes(Model model) {
+    @GetMapping("/cafeList")
+    public String cafeList(Model model) {
         model.addAttribute("cafes", cafeService.findAll());
+
         return "cafe/cafeList";
     }
 }

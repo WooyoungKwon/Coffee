@@ -23,16 +23,6 @@ repositories {
 	mavenCentral()
 }
 
-//ext {
-//	set('springCloudVersion', "2023.0.2")
-//}
-//
-//dependencyManagement {
-//	imports {
-//		mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
-//	}
-//}
-
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -42,13 +32,9 @@ dependencies {
 	// AWS
 	implementation(platform("software.amazon.awssdk:bom:2.27.19"))
 	implementation('software.amazon.awssdk:s3')
-//	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
-//	implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.1.1")
-//	implementation("io.awspring.cloud:spring-cloud-aws-starter-s3")
 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-//	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

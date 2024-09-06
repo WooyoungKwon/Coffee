@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head th:replace="~{fragments/header :: header}"></head>
-<!--fragments/header가 밑 head 태그 안의 내용을 replace-->
 <body>
 <main>
     <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+    <div style="padding-top: 65px"></div>
     <!--    Carousel -->
-    <div id="myCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -61,16 +61,13 @@
         <div class="album py-5 bg-light mt-5">
             <div class="container">
                 <div class="container px-4 py-5" id="custom-cards">
-                    <a style="float: right; margin-right: 5%" href="/cafe">더보기</a>
+                    <a style="float: right; margin-right: 5%" href="/cafeList">더보기</a>
                     <h2 class="pb-2 border-bottom">카페 목록</h2>
                 </div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <div class="col" th:each="cafe : ${cafes}">
-                        <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em" text-anchor="middle" dominant-baseline="middle" th:text="${cafe.photos}"></text>
-                            </svg>
+                        <div class="card shadow-sm align-items-center img-thumbnail">
+                            <img class="cafe-thumbnail" th:src="@{${cafeS3Keys[cafe.id]}}" alt="Cafe Thumbnail"/>
                             <div class="card-body" style="flex-direction: column">
                                 <div>
                                     Name: <span th:text="${cafe.name}"></span>

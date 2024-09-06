@@ -28,7 +28,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
 //                         이 페이지는 로그인을 안해도 접근 허용
-                        .requestMatchers("/", "/member/signUp", "/member/signIn", "/member/login", "/static/**", "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/", "/member/signUp", "/member/signIn", "/member/login", "/S3/**", "/static/**", "/css/**", "/js/**", "/images/**").permitAll()
                         .requestMatchers("/cafe/new").hasRole("ADMIN")
                         // 정적 리소스 경로에 대한 접근 허용
                         .anyRequest().authenticated()
