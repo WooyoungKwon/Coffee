@@ -2,6 +2,7 @@ package com.date.coffee.service;
 
 import com.date.coffee.domain.Cafe;
 import com.date.coffee.domain.Member;
+import com.date.coffee.dto.CafeDto;
 import com.date.coffee.dto.MemberDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,10 +58,13 @@ class MemberServiceTest {
         member.setName("test");
         Long id = memberService.signUp(member);
 
-        Cafe cafe1 = new Cafe();
-        cafe1.setName("test1");
-        Cafe cafe2 = new Cafe();
-        cafe2.setName("test2");
+        CafeDto cafeDto = new CafeDto();
+        cafeDto.setName("test1");
+        Cafe cafe1 = new Cafe(cafeDto);
+
+        CafeDto cafeDto2 = new CafeDto();
+        cafeDto2.setName("test2");
+        Cafe cafe2 = new Cafe(cafeDto2);
 
         //when
         memberService.addCafeToMember(id, cafe1);
@@ -79,10 +83,13 @@ class MemberServiceTest {
         member.setName("test");
         Long id = memberService.signUp(member);
 
-        Cafe cafe1 = new Cafe();
-        cafe1.setName("test");
-        Cafe cafe2 = new Cafe();
-        cafe2.setName("test2");
+        CafeDto cafeDto1 = new CafeDto();
+        cafeDto1.setName("test1");
+        Cafe cafe1 = new Cafe(cafeDto1);
+
+        CafeDto cafeDto2 = new CafeDto();
+        cafeDto2.setName("test2");
+        Cafe cafe2 = new Cafe(cafeDto2);
 
         memberService.addCafeToMember(id, cafe1);
         memberService.addCafeToMember(id, cafe2);

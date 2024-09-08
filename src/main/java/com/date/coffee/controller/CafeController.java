@@ -2,6 +2,7 @@ package com.date.coffee.controller;
 
 import com.date.coffee.domain.Cafe;
 import com.date.coffee.domain.Member;
+import com.date.coffee.domain.Photo;
 import com.date.coffee.dto.CafeDto;
 import com.date.coffee.service.CafeService;
 import com.date.coffee.service.MemberService;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +31,8 @@ public class CafeController {
     private final S3Service s3Service;
     private final MemberService memberService;
     private final PhotoService photoService;
+    private final S3Service s3Service;
+
     Set<String> imageExtensionSet = Set.of("jpg", "jpeg", "png");
 
     @GetMapping("/cafe/new")
@@ -64,10 +68,23 @@ public class CafeController {
         return "redirect:/";
     }
 
-    @GetMapping("/cafeList")
+    @GetMapping("/cafe/list")
     public String cafeList(Model model) {
         model.addAttribute("cafes", cafeService.findAll());
 
         return "cafe/cafeList";
+    }
+
+    @GetMapping("/cafe/info/{id}")
+    public String cafeInfo(@PathVariable Long id, Model model) {
+        Cafe cafe = cafeService.findById(id);
+        List<Photo> photos = cafe.getPhotos();
+
+        s3Service.getPresignedImageUrl()
+
+
+        model.addAttribute("photos", photos);
+
+        return "cafe/cafeInfo";
     }
 }

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class CafeDto {
     private Long id;
     private String name;
-    private String image;
+//    private String image;
 
 //    private Address address;
     private String city;

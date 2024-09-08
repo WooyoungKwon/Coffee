@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+
+    <!-- 헤더 이미지 -->
+    <div class="header-image"></div>
+
+    <!-- Coffee 텍스트 -->
+    <h1 class="title">Coffee</h1>
+
+    <!-- 가로로 나열된 3개의 이미지 -->
+    <div class="container">
+        <div class="row text-center" th:each="photo : ${photos}">
+            <div class="col-md-4">
+                <img th:src="@{${photo.getS3Key()}}" alt="Coffee 1">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

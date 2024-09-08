@@ -2,6 +2,7 @@ package com.date.coffee.controller;
 
 import com.date.coffee.domain.Cafe;
 import com.date.coffee.domain.Member;
+import com.date.coffee.domain.Photo;
 import com.date.coffee.domain.Role;
 import com.date.coffee.service.CafeService;
 import com.date.coffee.service.MemberService;
@@ -38,8 +39,8 @@ public class HomeController {
 
         Map<Long, String> cafeS3Keys = recentCafes.stream()
                 // cafeId를 Key 값, photoUrl을 value 값으로 사용하는 Map 생성
-                .collect(Collectors.toMap(Cafe::getId, cafe -> s3Service.getPresignedImageUrl(photoService.findS3KeyByCafeId(cafe.getId()))));
-
+                .collect(Collectors.toMap(Cafe::getId, cafe -> s3Service.getPresignedImageUrl(
+                        photoService.findS3KeyByCafeId(cafe.getId()))));
 
         // 로그인하기 귀찮아서 만든 테스트용 계정
         Member member = new Member();
