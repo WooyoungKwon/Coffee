@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -31,7 +32,6 @@ public class CafeController {
     private final S3Service s3Service;
     private final MemberService memberService;
     private final PhotoService photoService;
-    private final S3Service s3Service;
 
     Set<String> imageExtensionSet = Set.of("jpg", "jpeg", "png");
 
@@ -78,12 +78,12 @@ public class CafeController {
     @GetMapping("/cafe/info/{id}")
     public String cafeInfo(@PathVariable Long id, Model model) {
         Cafe cafe = cafeService.findById(id);
-        List<Photo> photos = cafe.getPhotos();
+        List<String> preUrls = new ArrayList<>();
+        for(Photo photo : cafe.getPhotos()) {
+           preUrls.add(s3Service.getPresignedImageUrl(photo.getS3Key()));
+        }
 
-        s3Service.getPresignedImageUrl()
-
-
-        model.addAttribute("photos", photos);
+        model.addAttribute("preUrls", preUrls);
 
         return "cafe/cafeInfo";
     }
