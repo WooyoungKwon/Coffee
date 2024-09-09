@@ -19,6 +19,7 @@ public class Cafe {
     private Long id;
 
     private String name;
+    private String description;
 
     @Embedded
     private Address address;

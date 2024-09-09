@@ -17,6 +17,11 @@
           </label>
         </div>
         <div class="form-group mb-3">
+          <label th:for="description">설명
+            <input type="text" th:field="*{description}" class="form-control" placeholder="설명">
+          </label>
+        </div>
+        <div class="form-group mb-3">
           <div class="form-group mb-3">
             <label th:for="zipcode">우편번호
               <input type="text" th:field="*{zipcode}" class="form-control" placeholder="우편번호">

@@ -43,12 +43,14 @@ public class CafeController {
 
     @PostMapping("/cafe/new")
     public String createCafe(@RequestParam("cafeImages")List<MultipartFile> files, CafeDto cafeDto) throws IOException {
+        String username = memberService.getSessionUser().getName();
+        Member member = memberService.findByUsername(username);
+
         Cafe cafe = new Cafe(cafeDto);
+        cafe.setMember(member);
         cafeService.save(cafe);
 
         // 이미지 저장
-        String username = memberService.getSessionUser().getName();
-        Member member = memberService.findByUsername(username);
         for (MultipartFile file : files) {
             // 파일이 입력되지 않았으면 return
             if(file.isEmpty()) {
@@ -84,6 +86,7 @@ public class CafeController {
         }
 
         model.addAttribute("preUrls", preUrls);
+        model.addAttribute("cafe", cafe);
 
         return "cafe/cafeInfo";
     }

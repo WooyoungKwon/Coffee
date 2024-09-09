@@ -34,6 +34,7 @@ public class CafeService {
         Cafe findCafe = cafeRepository.findById(id)
                 .orElseThrow(RuntimeException::new);
         findCafe.setName(cafeDto.getName());
+        findCafe.setDescription(cafeDto.getDescription());
         Address address = new Address(cafeDto.getCity(), cafeDto.getStreet(), cafeDto.getZipcode());
         findCafe.setAddress(address);
         findCafe.setVibe(cafeDto.getVibe());

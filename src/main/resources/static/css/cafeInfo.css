@@ -8127,7 +8127,7 @@ textarea.form-control-lg {
 
 .bg-primary {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+  background-color: #4B2E2A !important;
 }
 
 .bg-secondary {
@@ -10978,13 +10978,11 @@ html {
 .masthead .masthead-subheading {
   font-size: 1.25rem;
 }
-.masthead .masthead-avatar {
-  width: 15rem;
-}
+
 
 @media (min-width: 992px) {
   .masthead {
-    padding-top: calc(6rem + 104px);
+    padding-top: calc(3rem);
     padding-bottom: 6rem;
   }
   .masthead .masthead-heading {

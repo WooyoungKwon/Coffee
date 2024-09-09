@@ -43,12 +43,12 @@ public class HomeController {
                         photoService.findS3KeyByCafeId(cafe.getId()))));
 
         // 로그인하기 귀찮아서 만든 테스트용 계정
-        Member member = new Member();
-        member.setUsername("1");
-        member.setPassword("1");
-        member.setName("1");
-        member.setRole(Role.ROLE_ADMIN);
-        memberService.signUp(member);
+//        Member member = new Member();
+//        member.setUsername("1");
+//        member.setPassword("1");
+//        member.setName("1");
+//        member.setRole(Role.ROLE_ADMIN);
+//        memberService.signUp(member);
 
         model.addAttribute("cafes", recentCafes);
         model.addAttribute("cafeS3Keys", cafeS3Keys);

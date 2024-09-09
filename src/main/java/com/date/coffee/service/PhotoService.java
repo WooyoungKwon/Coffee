@@ -27,7 +27,7 @@ public class PhotoService {
     }
 
     public String findS3KeyByCafeId(Long id) {
-        Optional<Photo> photo = photoRepository.findByCafeId(id);
+        Optional<Photo> photo = photoRepository.findFirstByCafeId(id);
         return photo.map(Photo::getS3Key).orElse(null);
     }
 }
